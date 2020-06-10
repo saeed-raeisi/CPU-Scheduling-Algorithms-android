@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        setTitle("نموار نتیجه ");
+        setTitle("نمودار نتیجه ");
  //init
         avg_wt=findViewById(R.id.avg_wt_txt);
         avg_at=findViewById(R.id.avg_at_txt);
