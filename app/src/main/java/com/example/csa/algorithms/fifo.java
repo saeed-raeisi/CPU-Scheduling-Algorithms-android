@@ -2,12 +2,11 @@ package com.example.csa.algorithms;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
-
-
 import com.example.csa.Models.input_process_model;
 import com.example.csa.Models.output_process_model;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 public class fifo {
@@ -31,7 +30,8 @@ public class fifo {
           output=set_data(input);
 
           int prevEnd=0;
-        output=compare(output);
+        //output=compare(output);
+        Collections.sort(output,new Sortbyroll());
 
         for(int i=0 ; i<num ;i++)
             {
@@ -95,5 +95,23 @@ public class fifo {
             output.add(i,temp);
         }
         return output;
+    }
+
+    class Sortbyroll implements Comparator<output_process_model>
+
+    {
+
+        // Used for sorting in ascending order of
+
+        // roll number
+
+        public int compare(output_process_model a, output_process_model b)
+
+        {
+
+            return a.getArrival_time() - b.getArrival_time();
+
+        }
+
     }
 }

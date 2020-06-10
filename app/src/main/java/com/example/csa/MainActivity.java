@@ -6,117 +6,88 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.example.csa.Models.input_process_model;
 import com.example.csa.Models.output_process_model;
 import com.example.csa.algorithms.fifo;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.BubbleData;
-import com.github.mikephil.charting.data.BubbleDataSet;
-import com.github.mikephil.charting.data.BubbleEntry;
-import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BarChart chart;
+    private TextView avg_wt,avg_at;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        setTitle("CombinedChartActivity");
-
-
+        setTitle("نموار نتیجه ");
+ //init
+        avg_wt=findViewById(R.id.avg_wt_txt);
+        avg_at=findViewById(R.id.avg_at_txt);
+        chart = findViewById(R.id.chart1);
+ // fifo
         ArrayList<input_process_model> input = new ArrayList<>();
         ArrayList<output_process_model> output = new ArrayList<>();
         input = test_data(input);
         output = new fifo(input).out(output);
         output = fifo.getOutput();
+// fifo result
+        avg_wt.setText(String.valueOf(fifo.get_avg()[0]));
+        avg_at.setText(String.valueOf(fifo.get_avg()[1]));
 
-        chart = findViewById(R.id.chart1);
-         List<BarDataSet> list=new ArrayList<>();
 
-        for (int i = 0; i < output.size(); i++) {
-            ArrayList<BarEntry> values1 = new ArrayList<>();
-            ArrayList<BarEntry> values2 = new ArrayList<>();
-            ArrayList<BarEntry> values3 = new ArrayList<>();
-            values1.add(new BarEntry(i, (float) output.get(i).getTurn_around_time()));
-            values2.add(new BarEntry(i, (float) output.get(i).getWaiting_time()));
-            values3.add(new BarEntry(i, (float) output.get(i).getCbt()));
+
+            ArrayList<BarEntry> cbt = new ArrayList<>();
+            ArrayList<BarEntry> wt = new ArrayList<>();
+            ArrayList<BarEntry> at = new ArrayList<>();
+
+            for (int j = 0; j < output.size(); j++) {
+                cbt.add(new BarEntry(j, (float) output.get(j).getCbt()));
+                wt.add(new BarEntry(j, (float) output.get(j).getWaiting_time()));
+                at.add(new BarEntry(j, (float) output.get(j).getTurn_around_time()));
+            }
             BarDataSet set1,set2,set3;
-            set1 = new BarDataSet(values1, "at");
-            set1.setColor(Color.rgb(104, 241, 175));
-            set2 = new BarDataSet(values2, "wt");
-            set2.setColor(Color.rgb(164, 228, 251));
-            set3 = new BarDataSet(values3, "cbt");
-            set3.setColor(Color.rgb(242, 247, 158));
-            list.add(set1);
-            list.add(set2);
-            list.add(set3);
-        }
-        BarData data = new BarData(list.get(0));
-        for (int i = 1; i < list.size(); i++) {
+            set1 = new BarDataSet(cbt, "at");
+            //set1.setColor(Color.rgb(104, 241, 175));
+            set1.setColor(Color.GREEN);
+            set2 = new BarDataSet(wt, "wt");
+           // set2.setColor(Color.rgb(164, 228, 251));
+            set2.setColor(Color.RED);
+            set3 = new BarDataSet(at, "cbt");
+           //set3.setColor(Color.rgb(242, 247, 158));
+            set3.setColor(Color.BLUE);
 
-            data.addDataSet(list.get(i));
-        }
-      //  BarData data = new BarData(list.get(0));
+            BarData data=new BarData(set1,set2,set3);
+
         data.setValueFormatter(new LargeValueFormatter());
-        // data.setValueTypeface(tfLight);
 
-        // data.setData(output.toArray());
         chart.setData(data);
+
+        float groupSpace = 0.50f;
+        float barSpace = 0.02f;
+        float barWidth = 0.46f;
+
+        int startYear = 0;
+        int endYear = 8;
+        // Disable zoom - SET Group - Refresh
+        chart.setPinchZoom(false);
+        chart.setDoubleTapToZoomEnabled(false);
+        chart.getBarData().setBarWidth(barWidth);
+        chart.getXAxis().setAxisMinValue(startYear);
+        chart.getXAxis().setAxisMaximum(endYear);
+        chart.groupBars(startYear, groupSpace, barSpace);
+        chart.setFitBars(true);
         chart.invalidate();
-//        ArrayList<BarEntry> values1 = new ArrayList<>();
-//        ArrayList<BarEntry> values2 = new ArrayList<>();
-//        ArrayList<BarEntry> values3 = new ArrayList<>();
-//        ArrayList<BarEntry> values4 = new ArrayList<>();
-
-        //float randomMultiplier = seekBarY.getProgress() * 100000f;
-//
-//        for (int i = 0; i < 2; i++) {
-//            values1.add(new BarEntry(i, (float) output.get(i).getTurn_around_time()));
-//            values2.add(new BarEntry(i, (float) output.get(i).getWaiting_time()));
-//           // values3.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
-//           // values4.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
-//        }
-
-//        BarDataSet set1, set2, set3, set4;
-//
-//        if (chart.getData() != null && chart.getData().getDataSetCount() > 0) {
-//
-//            set1 = (BarDataSet) chart.getData().getDataSetByIndex(0);
-//            set2 = (BarDataSet) chart.getData().getDataSetByIndex(1);
-//            set3 = (BarDataSet) chart.getData().getDataSetByIndex(2);
-//            set4 = (BarDataSet) chart.getData().getDataSetByIndex(3);
-//            set1.setValues(values1);
-//            set2.setValues(values2);
-//           // set3.setValues(values3);
-//           // set4.setValues(values4);
-//            chart.getData().notifyDataChanged();
-//            chart.notifyDataSetChanged();
-//
-//        } else {
-//            // create 4 DataSets
-//            set1 = new BarDataSet(values1, "Company A");
-//            set1.setColor(Color.rgb(104, 241, 175));
-//            set2 = new BarDataSet(values2, "Company B");
-//            set2.setColor(Color.rgb(164, 228, 251));
-           // set3 = new BarDataSet(values3, "Company C");
-           // set3.setColor(Color.rgb(242, 247, 158));
-           // set4 = new BarDataSet(values4, "Company D");
-           // set4.setColor(Color.rgb(255, 102, 0));
-
-
-
 
             Log.i("1", "onCreate: 1");
 
@@ -132,19 +103,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        // Just data Test!
         ArrayList<input_process_model> test_data(ArrayList<input_process_model> input)
         {
 
-            input_process_model p1 = new input_process_model("p1", 8, 0);
+            input_process_model p1 = new input_process_model("p3", 9, 2);
             input_process_model p2 = new input_process_model("p2", 4, 1);
-            input_process_model p3 = new input_process_model("p3", 9, 2);
+            input_process_model p3 = new input_process_model("p1", 8, 0);
             input_process_model p4 = new input_process_model("p4", 5, 3);
             input.add(0, p1);
             input.add(1, p2);
             input.add(2, p3);
             input.add(3, p4);
-
-
             return input;
         }
 

@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+<TextView
+    android:id="@+id/avg_wt_txt"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:textSize="20dp"
+    android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/avg_at_txt"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"/>
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart1"
         android:layout_width="match_parent"
