@@ -1,8 +1,9 @@
 # CPU_Scheduling_Algorithms_Android
-![Test Image 1](/1.png)
-![Test Image 2](/2.jpg)
-![Test Image 3](/3.jpg)
-
+<p >
+  <img src="/2.jpg" width="300" height="640" title="hover text">
+  <img src="/3.jpg" width="300" height="640" alt="accessibility text">
+  <img src="/1.png" width="300" height="640" alt="accessibility text">
+</p>
 
 Algorithm lists:
 
