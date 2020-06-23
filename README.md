@@ -1,14 +1,9 @@
 # CPU_Scheduling_Algorithms_Android
 ![Test Image 1](/1.png)
-![Test Image 2](/2.png)
-![Test Image 3](/3.png)
 
-<p align="center">
-  <img src="/2.png" width="350" title="hover text">
-  <img src="/3.png" width="350" alt="accessibility text">
-</p>
-
-
+## This is an <h2> tag
+  Format: ![Alt Text](https://github.com/saeed-raeisi/CPU_Scheduling_Algorithms_Android/blob/master/3.png)
+https://github.com/saeed-raeisi/CPU_Scheduling_Algorithms_Android/blob/master/1.png
 Algorithm lists:
 
 1. RR
