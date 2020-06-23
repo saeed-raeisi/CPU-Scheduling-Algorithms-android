@@ -13,3 +13,10 @@ Algorithm lists:
 4. SRT
 5. SJF
 
+## RR
+## HRRN
+## SRT
+## SJF
+## FIFO
+
+
