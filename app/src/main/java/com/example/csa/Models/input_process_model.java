@@ -39,11 +39,20 @@ public class input_process_model {
         this.completed = completed;
     }
 
+    public input_process_model() {
+        this.name = "";
+        this.cbt = 0;
+        this.arrival_time = 0;
+    }
+
+
     public input_process_model(String name, int cbt, int arrival_time) {
         this.name = name;
         this.cbt = cbt;
         this.arrival_time = arrival_time;
     }
+
+
 
     public input_process_model(String name, int cbt, int arrival_time, int completed) {
         this.name = name;
