@@ -34,9 +34,9 @@ public class show_processes_adapter extends RecyclerView.Adapter<show_processes_
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         holder.name.setText(list.get(position).getName());
-        holder.at_tv.setText(list.get(position).getArrival_time());
-        holder.bt_tv.setText(list.get(position).getCbt());
-        holder.complete.setText(list.get(position).getCompleted());
+        holder.at_tv.setText(String.valueOf(list.get(position).getArrival_time()));
+        holder.bt_tv.setText(String.valueOf(list.get(position).getCbt()));
+        holder.complete.setText(String.valueOf(list.get(position).getCompleted()));
         if (holder.complete.getText().equals("-1"))
         {
             holder.complete.setVisibility(View.GONE);

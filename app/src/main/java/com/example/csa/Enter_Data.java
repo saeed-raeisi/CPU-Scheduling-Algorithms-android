@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.csa.Models.input_process_model;
 import com.example.csa.adapters.show_processes_adapter;
 import com.example.csa.sqldatabase.database_functions;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ import java.util.Objects;
 public class Enter_Data extends AppCompatActivity {
     TextInputLayout at_input,bt_input,name_input;
     EditText at_et,bt_et,name_et;
+    Button btn;
+   //TextInputEditText at_et,bt_et,name_et;
     ArrayList<input_process_model> input_list;
     RecyclerView recyclerView;
     show_processes_adapter adapter;
@@ -41,14 +45,15 @@ public class Enter_Data extends AppCompatActivity {
         at_input=findViewById(R.id.enter_data_at_input);
         bt_input=findViewById(R.id.enter_data_bt_input);
         name_input=findViewById(R.id.enter_data_name_input);
-        at_et=at_input.getEditText();
-        bt_et=bt_input.getEditText();
-        name_et=name_input.getEditText();
+        at_et=  at_input.getEditText();
+        bt_et=  bt_input.getEditText();
+        name_et=  name_input.getEditText();
         input_list=new ArrayList<>();
         database_functions=new database_functions(getApplicationContext());
         recyclerView=findViewById(R.id.enter_data_recyclerview);
         adapter=new show_processes_adapter(getApplicationContext(),input_list);
         layoutManager=new GridLayoutManager(getApplicationContext(), 3);
+        btn=findViewById(R.id.button);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -66,7 +71,7 @@ public class Enter_Data extends AppCompatActivity {
         }
     }
 
-    public void clicked(View view) {
+    public void click_ed(View view) {
         if (input_list.size()>0){
             startActivityForResult(new Intent(getApplicationContext(),Select_Algorithm.class),111);
         }else
@@ -80,7 +85,7 @@ public class Enter_Data extends AppCompatActivity {
         {
             database_functions.addprocesses(input_list);
             Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            intent.putExtra("algorithm",data.getStringExtra("algorithm"));
+            intent.putExtra("algorithm",data.getStringExtra("algorithm_name"));
             startActivity(intent);
         }
     }

@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:onClick="click ed"
+            android:onClick="click_ed"
             android:text="تائید"
             android:textColor="@color/textwhite"
             android:textSize="18sp"
@@ -54,13 +54,14 @@
                 android:padding="14dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/enter_data_name_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/cardview_margin"
                     android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/enter_data_name_input"
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -68,13 +69,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/enter_data_at_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/cardview_margin"
                     android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/enter_data_at_input"
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -82,13 +84,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/enter_data_bt_input"
+                     android:id="@+id/enter_data_bt_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/cardview_margin"
                     android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"

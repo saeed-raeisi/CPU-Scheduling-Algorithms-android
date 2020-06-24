@@ -13,24 +13,24 @@ public class database extends SQLiteOpenHelper {
     private final  static String databae_name="csa.db";
     private final  static int databae_version=1;
     public final  static String table_name="processes";
-    private final  String process_id="id";
-    private final  String process_name="name";
-    private final  String process_bt="bt";
-    private final  String process_at="at";
-    private final  String process_complete="complete";
+    public final static String process_id="id";
+    public final static String process_name="name";
+    public final static String process_bt="bt";
+    public final static String process_at="at";
+    public final static String process_complete="complete";
 
     public database(Context context) {
         super(context, databae_name, null, databae_version);
     }
-
+//AUTOINCREMENT
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS "+ table_name + "("
-                + process_id + "INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + process_name + "TEXT NOT NULL ,"
-                + process_bt + "INTEGER NOT NULL ,"
-                + process_at + "INTEGER NOT NULL ,"
-                + process_complete + "INTEGER NOT NULL )");
+       db.execSQL("CREATE TABLE IF NOT EXISTS "+ table_name + "("
+                + process_id + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + process_name + " TEXT NOT NULL ,"
+                + process_bt + " INTEGER NOT NULL ,"
+                + process_at + " INTEGER NOT NULL ,"
+                + process_complete + " INTEGER NOT NULL )");
 
     }
 

@@ -35,11 +35,16 @@ public class database_functions {
 
         for (int i=0;i<list.size();i++) {
             ContentValues contentValues=new ContentValues();
-            contentValues.put("name",list.get(i).getName());
-            contentValues.put("bt",list.get(i).getCbt());
-            contentValues.put("at",list.get(i).getArrival_time());
-            contentValues.put("complete",list.get(i).getCompleted());
-            database.insert("processes", null, contentValues);
+//            contentValues.put("name",list.get(i).getName());
+//            contentValues.put("bt",list.get(i).getCbt());
+//            contentValues.put("at",list.get(i).getArrival_time());
+//            contentValues.put("complete",list.get(i).getCompleted());
+            //contentValues.put("id",String.valueOf(i+14));
+            contentValues.put(com.example.csa.sqldatabase.database.process_name,list.get(i).getName());
+            contentValues.put(com.example.csa.sqldatabase.database.process_bt,list.get(i).getCbt());
+            contentValues.put(com.example.csa.sqldatabase.database.process_at,list.get(i).getArrival_time());
+            contentValues.put(com.example.csa.sqldatabase.database.process_complete,list.get(i).getCompleted());
+            database.insert(com.example.csa.sqldatabase.database.table_name, null, contentValues);
         }
         close();
     }
@@ -50,8 +55,8 @@ public class database_functions {
         ArrayList process_list = new ArrayList<>();
         Cursor cursor;
         try {
-
-            cursor=database.rawQuery("SELECT * FROM " + com.example.csa.sqldatabase.database.table_name+" order by id",null);
+//+" order by id"
+            cursor=database.rawQuery("SELECT * FROM " + com.example.csa.sqldatabase.database.table_name,null);
 
             if (cursor.moveToFirst()) {
                 do {
