@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="AT avg"
+                        android:text="RT avg"
                         android:textColor="@color/textwhite"
                         android:textSize="16sp"
                         android:textStyle="normal" />
