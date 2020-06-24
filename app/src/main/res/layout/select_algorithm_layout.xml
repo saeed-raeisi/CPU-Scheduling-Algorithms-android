@@ -13,8 +13,7 @@
             android:layout_height="match_parent"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardMaxElevation="9dp"
-            app:cardUseCompatPadding="true">
+            app:cardMaxElevation="9dp">
 
         <LinearLayout
                 android:layout_width="match_parent"

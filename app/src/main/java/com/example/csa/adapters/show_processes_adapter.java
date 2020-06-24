@@ -16,7 +16,7 @@ import java.util.List;
 public class show_processes_adapter extends RecyclerView.Adapter<show_processes_adapter.viewholder> {
     Context context;
     List<input_process_model> list;
-
+    int itemwidth=0;
     public show_processes_adapter(Context context, List<input_process_model> list) {
         this.context = context;
         this.list = list;
@@ -42,6 +42,8 @@ public class show_processes_adapter extends RecyclerView.Adapter<show_processes_
             holder.complete.setVisibility(View.GONE);
             holder.text_complete.setVisibility(View.GONE);
         }
+        if (position==0)
+        itemwidth= holder.itemView.getWidth();
     }
 
 
@@ -65,5 +67,9 @@ public class show_processes_adapter extends RecyclerView.Adapter<show_processes_
         }
     }
 
+    public int getitemwidth()
+    {
+        return itemwidth;
+    }
 
 }

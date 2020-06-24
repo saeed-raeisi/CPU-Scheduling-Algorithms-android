@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:onClick="click_ed"
+            android:onClick="clicked"
             android:text="تائید"
             android:textColor="@color/textwhite"
             android:textSize="18sp"
@@ -27,6 +27,7 @@
             android:layout_marginTop="100dp"
             android:clickable="true"
             android:onClick="add_clicked"
+            android:tint="@color/textwhite"
             app:backgroundTint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -80,7 +81,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:hint="arrival time" />
+                        android:hint="arrival time"
+                        android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -95,7 +97,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:hint="burst time" />
+                        android:hint="burst time"
+                        android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

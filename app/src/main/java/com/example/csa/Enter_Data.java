@@ -3,6 +3,8 @@ package com.example.csa;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +35,7 @@ public class Enter_Data extends AppCompatActivity {
     show_processes_adapter adapter;
     GridLayoutManager layoutManager;
     com.example.csa.sqldatabase.database_functions database_functions;
+    int device_window_width;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,10 @@ public class Enter_Data extends AppCompatActivity {
         database_functions=new database_functions(getApplicationContext());
         recyclerView=findViewById(R.id.enter_data_recyclerview);
         adapter=new show_processes_adapter(getApplicationContext(),input_list);
-        layoutManager=new GridLayoutManager(getApplicationContext(), 3);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        device_window_width = displayMetrics.widthPixels;
+        layoutManager=new GridLayoutManager(getApplicationContext(), 1);
         btn=findViewById(R.id.button);
 
         recyclerView.setLayoutManager(layoutManager);
@@ -68,10 +74,17 @@ public class Enter_Data extends AppCompatActivity {
                     ,-1);
             input_list.add(temp);
             Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
-        }
+            Log.e("width",device_window_width+ "  &  "+((show_processes_adapter) recyclerView.getAdapter()).getitemwidth() +"  &  "+adapter.getitemwidth());
+
+            if (((show_processes_adapter)recyclerView.getAdapter()).getitemwidth()!=0) {
+                layoutManager = new GridLayoutManager(getApplicationContext(), device_window_width / ((show_processes_adapter) recyclerView.getAdapter()).getitemwidth());
+                recyclerView.setLayoutManager(layoutManager);
+            }
+        }else
+            Toast.makeText(this, "تمام فیلد ها را پر کنید", Toast.LENGTH_SHORT).show();
     }
 
-    public void click_ed(View view) {
+    public void clicked(View view) {
         if (input_list.size()>0){
             startActivityForResult(new Intent(getApplicationContext(),Select_Algorithm.class),111);
         }else

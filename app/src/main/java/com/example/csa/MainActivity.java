@@ -28,6 +28,8 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.main_recycler);
         database_functions = new database_functions(getApplicationContext());
         process_list=database_functions.getprocesses();
-        adapter=new show_processes_adapter(getApplicationContext(),process_list);
 
-        recyclerView.setAdapter(adapter);
         //        ArrayList<input_process_model> input = new ArrayList<>();
         output = new ArrayList<>();
 
@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 //         output= hrrn.getOutput();
 
          start_algorithm();
+        adapter=new show_processes_adapter(getApplicationContext(),process_list);
+        recyclerView.setAdapter(adapter);
 
 // fifo,sjf result
 
@@ -107,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
         float barWidth = 0.46f;
 
         int startYear = 0;
-        int endYear = 8;
+        int endYear = process_list.size()*2;
         // Disable zoom - SET Group - Refresh
-        chart.setPinchZoom(false);
+        chart.setPinchZoom(true);
         chart.setDoubleTapToZoomEnabled(false);
         chart.getBarData().setBarWidth(barWidth);
         chart.getXAxis().setAxisMinValue(startYear);
@@ -157,39 +159,48 @@ public class MainActivity extends AppCompatActivity {
             switch (Objects.requireNonNull(getIntent().getStringExtra("algorithm")))
             {
                 case "FIFO":
+                    Collections.sort(process_list, new Comparator<input_process_model>() {
+                        @Override
+                        public int compare(input_process_model t1, input_process_model t2) {
+                            if (t1.getArrival_time()<t2.getArrival_time())
+                                return -1;
+                            else
+                                return 1;
+                        }
+                    });
                     new fifo(process_list);
                     output=fifo.getOutput();
                      set_bar_data(output);
-                    avg_wt.setText(String.valueOf(fifo.get_avg()[0]));
-                    avg_at.setText(String.valueOf(fifo.get_avg()[1]));
+                    avg_wt.setText(String.valueOf(limit_decimal(fifo.get_avg()[0])));
+                    avg_at.setText(String.valueOf(limit_decimal(fifo.get_avg()[1])));
                     break;
                 case "HRRN":
                     new hrrn(process_list);
                     output=hrrn.getOutput();
                     set_bar_data(output);
-                    avg_wt.setText(String.valueOf(hrrn.get_avg()[0]));
-                    avg_at.setText(String.valueOf(hrrn.get_avg()[1]));
+                    avg_wt.setText(String.valueOf(limit_decimal(hrrn.get_avg()[0])));
+                    avg_at.setText(String.valueOf(limit_decimal(hrrn.get_avg()[1])));
                     break;
                 case "RR":
                     new RR(process_list);
                     output=RR.getOutput();
                     set_bar_data(output);
-                    avg_wt.setText(String.valueOf(RR.get_avg()[0]));
-                    avg_at.setText(String.valueOf(RR.get_avg()[1]));
+                    avg_wt.setText(String.valueOf(limit_decimal(RR.get_avg()[0])));
+                    avg_at.setText(String.valueOf(limit_decimal(RR.get_avg()[1])));
                     break;
                 case "SJF":
                     new sjf(process_list);
                     output=sjf.getOutput();
                     set_bar_data(output);
-                    avg_wt.setText(String.valueOf(sjf.get_avg()[0]));
-                    avg_at.setText(String.valueOf(sjf.get_avg()[1]));
+                    avg_wt.setText(String.valueOf(limit_decimal(sjf.get_avg()[0])));
+                    avg_at.setText(String.valueOf(limit_decimal(sjf.get_avg()[1])));
                     break;
                 case "SRT":
                     new srt(process_list);
                     output=srt.getOutput();
                     set_bar_data(output);
-                    avg_wt.setText(String.valueOf(srt.get_avg()[0]));
-                    avg_at.setText(String.valueOf(srt.get_avg()[1]));
+                    avg_wt.setText(String.valueOf(limit_decimal(srt.get_avg()[0])));
+                    avg_at.setText(String.valueOf(limit_decimal(srt.get_avg()[1])));
                     break;
             }
         }
@@ -229,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
             float barWidth = 0.46f;
 
             int startYear = 0;
-            int endYear = 8;
+            int endYear = process_list.size()*3;
             // Disable zoom - SET Group - Refresh
             chart.setPinchZoom(false);
             chart.setDoubleTapToZoomEnabled(false);
@@ -237,9 +248,16 @@ public class MainActivity extends AppCompatActivity {
             chart.getXAxis().setAxisMinValue(startYear);
             chart.getXAxis().setAxisMaximum(endYear);
             chart.groupBars(startYear, groupSpace, barSpace);
-            chart.setFitBars(true);
+            chart.setFitBars(false);
+            chart.setHorizontalScrollBarEnabled(true);
             chart.invalidate();
 
+        }
+
+
+        public double limit_decimal(float number)
+        {
+            return Math.round(number * 100.0)/100.0;
         }
 
 }

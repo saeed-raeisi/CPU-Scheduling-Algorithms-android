@@ -39,12 +39,17 @@ public class select_algorithm_adapter extends RecyclerView.Adapter<select_algori
     @Override
     public void onBindViewHolder(@NonNull final viewholder holder, final int position) {
         holder.name.setText(list[position]);
+        if (position!=selected_position) {
+            holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_background));
+            holder.name.setTextColor(context.getResources().getColor(R.color.textcolor));
+        }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
                 holder.name.setTextColor(context.getResources().getColor(R.color.textwhite));
                 selected_position=position;
+                notifyDataSetChanged();
             }
         });
     }

@@ -20,7 +20,7 @@
                 android:layout_marginTop="@dimen/cardview_margin"
                 android:layout_marginBottom="@dimen/cardview_margin"
                 android:layout_weight="3"
-                app:cardBackgroundColor="#F6F6F6"
+                app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="6dp">
 
@@ -37,6 +37,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="AT avg"
+                        android:textColor="@color/textwhite"
                         android:textSize="16sp"
                         android:textStyle="normal" />
 
@@ -49,6 +50,7 @@
                         android:layout_marginBottom="@dimen/text_margin"
                         android:gravity="center"
                         android:text="8"
+                        android:textColor="@color/textwhite"
                         android:textSize="16sp" />
 
                 <TextView
@@ -58,6 +60,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="WT avg"
+                        android:textColor="@color/textwhite"
                         android:textSize="16sp"
                         android:textStyle="normal" />
 
@@ -69,6 +72,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="4"
+                        android:textColor="@color/textwhite"
                         android:textSize="16sp" />
 
             </LinearLayout>
