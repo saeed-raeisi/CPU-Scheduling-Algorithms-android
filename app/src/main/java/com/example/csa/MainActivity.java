@@ -191,8 +191,10 @@ public class MainActivity extends AppCompatActivity {
                     new sjf(process_list);
                     output=sjf.getOutput();
                     set_bar_data(output);
-                    avg_wt.setText(String.valueOf(limit_decimal(sjf.get_avg()[0])));
-                    avg_at.setText(String.valueOf(limit_decimal(sjf.get_avg()[1])));
+                    Log.i("TAG", "start_algorithm: "+sjf.get_avg()[0]);
+                    Log.i("TAG", "start_algorithm: "+sjf.get_avg()[1]);
+                    avg_wt.setText(String.valueOf(sjf.get_avg()[0]));
+                    avg_at.setText(String.valueOf(sjf.get_avg()[1]));
                     break;
                 case "SRT":
                     new srt(process_list);
