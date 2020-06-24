@@ -50,6 +50,22 @@ public class parent_abs {
         }
 
     }
+    class SortbyAT_input implements Comparator<input_process_model>
+    {
+
+        // Used for sorting in ascending order of
+
+        // roll number
+
+        public int compare(input_process_model a, input_process_model b)
+
+        {
+
+            return a.getArrival_time() - b.getArrival_time();
+
+        }
+
+    }
 
     class Sortbycbt implements Comparator<output_process_model>
     {
@@ -59,6 +75,23 @@ public class parent_abs {
         // roll number
 
         public int compare(output_process_model a, output_process_model b)
+
+        {
+
+            return a.getCbt() - b.getCbt();
+
+        }
+
+    }
+
+    class Sortbycbt_input implements Comparator<input_process_model>
+    {
+
+        // Used for sorting in ascending order of
+
+        // roll number
+
+        public int compare(input_process_model a, input_process_model b)
 
         {
 

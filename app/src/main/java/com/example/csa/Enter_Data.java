@@ -66,7 +66,7 @@ public class Enter_Data extends AppCompatActivity {
 
     }
     public void add_clicked(View view) {
-        if (!bt_et.getText().toString().equals("")||!at_et.getText().toString().equals("")||!name_et.getText().toString().equals(""))
+        if (!bt_et.getText().toString().equals("")&&!at_et.getText().toString().equals("")&&!name_et.getText().toString().equals(""))
         {
             input_process_model temp=new input_process_model(name_et.getText().toString()
                     ,Integer.parseInt(bt_et.getText().toString())

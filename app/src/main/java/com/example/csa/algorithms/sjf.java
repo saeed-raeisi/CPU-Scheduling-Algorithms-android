@@ -27,6 +27,9 @@ public class sjf extends parent_abs {
         int prevEnd=0;
         Collections.sort(output,new parent_abs.Sortbycbt());
         Collections.sort(output,new parent_abs.SortbyAT());
+        Collections.sort(input,new parent_abs.Sortbycbt_input());
+        Collections.sort(input,new parent_abs.SortbyAT_input());
+
         for(int i=0 ; i<num ;i++)
         {
             output.get(i).setCompleted(max(prevEnd,output.get(i).getArrival_time()) + output.get(i).getCbt());
