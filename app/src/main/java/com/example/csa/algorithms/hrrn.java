@@ -18,7 +18,7 @@ public class hrrn extends parent_abs {
     {
             int num=input.size();
             int sum_bt=0,t;
-        output=set_data(input);
+            output=set_data(input);
            Collections.sort(output,new parent_abs.SortbyAT());
         for(int i=0;i<num;i++)
     {

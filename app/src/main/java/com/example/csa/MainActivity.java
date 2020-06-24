@@ -219,13 +219,13 @@ public class MainActivity extends AppCompatActivity {
                 at.add(new BarEntry(j, (float) output.get(j).getTurn_around_time()));
             }
             BarDataSet set1,set2,set3;
-            set1 = new BarDataSet(cbt, "Turn_around_time");
+            set1 = new BarDataSet(cbt, "cbt");
             //set1.setColor(Color.rgb(104, 241, 175));
             set1.setColor(Color.GREEN);
             set2 = new BarDataSet(wt, "Waiting_time");
             // set2.setColor(Color.rgb(164, 228, 251));
             set2.setColor(Color.RED);
-            set3 = new BarDataSet(at, "cbt");
+            set3 = new BarDataSet(at, "Turn_around_time");
             //set3.setColor(Color.rgb(242, 247, 158));
             set3.setColor(Color.BLUE);
 
