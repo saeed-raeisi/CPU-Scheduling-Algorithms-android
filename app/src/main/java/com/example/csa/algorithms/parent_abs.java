@@ -101,7 +101,7 @@ public class parent_abs {
 
     }
 
-   public int max(int a,int b)
+   public float max(float a,float b)
     {
         if(a>b)
             return a;

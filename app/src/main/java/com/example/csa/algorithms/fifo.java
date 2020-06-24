@@ -29,14 +29,14 @@ public class fifo {
           int num=input.size();
           output=set_data(input);
 
-          int prevEnd=0;
+          float prevEnd=0;
         //output=compare(output);
         Collections.sort(output,new Sortbyroll());
 
         for(int i=0 ; i<num ;i++)
             {
                output.get(i).setCompleted(max(prevEnd,output.get(i).getArrival_time()) + output.get(i).getCbt());
-               output.get(i).setTurn_around_time(output.get(i).getCompleted()-output.get(i).getArrival_time());
+               output.get(i).setTurn_around_time((int)output.get(i).getCompleted() -output.get(i).getArrival_time());
                output.get(i).setWaiting_time(output.get(i).getTurn_around_time()-output.get(i).getCbt());
                 prevEnd=output.get(i).getCompleted();
 
@@ -75,7 +75,7 @@ public class fifo {
 
     }
 
-    int max(int a,int b)
+    float max(float a,float b)
     {
         if(a>b)
             return a;

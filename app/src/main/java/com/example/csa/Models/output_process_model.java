@@ -6,17 +6,17 @@ public class output_process_model {
     String name;
     int cbt;
     int arrival_time;
-    int completed;
+    float completed;
 
-    public int getCompleted() {
+    public float getCompleted() {
         return completed;
     }
 
-    public void setCompleted(int completed) {
+    public void setCompleted(float completed) {
         this.completed = completed;
     }
 
-    public output_process_model(String name, int cbt, int arrival_time, int completed, int waiting_time, int turn_around_time) {
+    public output_process_model(String name, int cbt, int arrival_time, float completed, int waiting_time, int turn_around_time) {
         this.name = name;
         this.cbt = cbt;
         this.arrival_time = arrival_time;
@@ -26,7 +26,7 @@ public class output_process_model {
     }
 
     int  waiting_time;
-   int turn_around_time;
+    int turn_around_time;
 
     public String getName() {
         return name;
